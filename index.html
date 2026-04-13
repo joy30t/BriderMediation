@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brider Mediation Agency — Workplace Mediation Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Franklin:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAFAF8;--bg-warm:#F5F3EE;--bg-deep:#1A1D1C;--bg-panel:#FFFFFF;
+  --text:#1A1D1C;--text-mid:#4A4E4C;--text-light:#7A7E7C;--text-inv:#F5F3EE;
+  --brand:#2E5A4E;--brand-light:#4A8A76;--brand-pale:#D6E8E0;--brand-dark:#1C3A30;
+  --gold:#B8965A;--gold-light:#E8D9B8;--gold-pale:#F5EFDF;
+  --border:#E2DED6;--border-light:#EDEAE4;
+  --red:#C0564F;--red-pale:#F5DAD8;--amber:#C4833B;--amber-pale:#F5E0C8;
+  --green:#4A8A5A;--green-pale:#D4E8DA;
+  --shadow-sm:0 1px 3px rgba(26,29,28,.06);--shadow-md:0 4px 20px rgba(26,29,28,.08);--shadow-lg:0 12px 40px rgba(26,29,28,.12);
+  --radius:6px;--radius-lg:12px;
+  --font-display:'Cormorant Garamond',Georgia,serif;
+  --font-body:'Libre Franklin','Helvetica Neue',sans-serif;
+  --max-w:1200px;--section-pad:clamp(4rem,8vw,7rem) clamp(1.5rem,4vw,2.5rem);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 clamp(1.5rem,4vw,2.5rem)}
+
+/* ══════ PUBLIC SITE VIEW ══════ */
+#publicSite{display:block}
+#adminDashboard{display:none}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;transition:.4s}
+.nav.scrolled{background:rgba(250,250,248,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-light)}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 clamp(1.5rem,4vw,2.5rem);height:72px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;cursor:pointer}
+.nav-logo .mark{width:36px;height:36px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center}
+.nav-logo .mark span{font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:#fff;line-height:1}
+.nav-logo .wordmark{font-family:var(--font-display);font-weight:600;font-size:1.3rem;color:var(--text-inv);letter-spacing:.3px;transition:.3s}
+.nav.scrolled .nav-logo .wordmark{color:var(--text)}
+.nav-links{display:flex;align-items:center;gap:clamp(1rem,2.2vw,2rem)}
+.nav-link{font-size:.82rem;font-weight:500;letter-spacing:.3px;text-decoration:none;color:rgba(255,255,255,.75);transition:.25s;cursor:pointer}
+.nav.scrolled .nav-link{color:var(--text-mid)}
+.nav-link:hover{color:var(--gold)}
+.nav-cta{padding:.55rem 1.3rem;border-radius:30px;background:var(--gold);color:var(--bg-deep);font-size:.8rem;font-weight:600;text-decoration:none;letter-spacing:.3px;transition:.3s;border:none;cursor:pointer}
+.nav-cta:hover{background:#C9A96A;transform:translateY(-1px)}
+.admin-link{font-size:.75rem;font-weight:500;letter-spacing:.3px;color:rgba(255,255,255,.35);cursor:pointer;transition:.25s;text-decoration:none}
+.nav.scrolled .admin-link{color:var(--text-light)}
+.admin-link:hover{color:var(--gold)}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:var(--bg-deep);overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,#0F1614 0%,#1A2E26 30%,#2E5A4E 70%,#1A3A30 100%)}
+.hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.018'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-content{position:relative;z-index:2;max-width:var(--max-w);margin:0 auto;padding:8rem clamp(1.5rem,4vw,2.5rem) 5rem;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem 1rem;border:1px solid rgba(184,150,90,.3);border-radius:30px;font-size:.72rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:2rem}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:var(--font-display);font-size:clamp(2.8rem,6vw,5rem);font-weight:400;color:var(--text-inv);line-height:1.12;max-width:800px;margin-bottom:1.5rem;letter-spacing:-.5px}
+.hero h1 strong{font-weight:700;color:var(--gold)}
+.hero h1 em{font-style:italic;color:var(--brand-light)}
+.hero-sub{font-size:clamp(1rem,1.5vw,1.2rem);color:rgba(245,243,238,.65);max-width:560px;line-height:1.7;margin-bottom:2.5rem;font-weight:300}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:30px;background:var(--gold);color:var(--bg-deep);font-family:var(--font-body);font-size:.88rem;font-weight:600;text-decoration:none;letter-spacing:.3px;border:none;cursor:pointer;transition:.3s}
+.btn-primary:hover{background:#C9A96A;transform:translateY(-2px);box-shadow:0 8px 30px rgba(184,150,90,.3)}
+.btn-secondary{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:30px;background:transparent;color:var(--text-inv);font-family:var(--font-body);font-size:.88rem;font-weight:500;text-decoration:none;letter-spacing:.3px;border:1px solid rgba(255,255,255,.2);cursor:pointer;transition:.3s}
+.btn-secondary:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.06)}
+.hero-stats{display:flex;gap:clamp(2rem,4vw,4rem);margin-top:4rem;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,.1)}
+.hero-stat .num{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--gold);line-height:1}
+.hero-stat .label{font-size:.78rem;color:rgba(245,243,238,.5);margin-top:.3rem;letter-spacing:.5px}
+
+/* ── SECTIONS ── */
+.section{padding:var(--section-pad)}
+.section-header{max-width:680px;margin-bottom:3rem}
+.section-header .overline{font-size:.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--brand);margin-bottom:.6rem;display:flex;align-items:center;gap:.6rem}
+.section-header .overline::before{content:'';width:28px;height:1.5px;background:var(--gold)}
+.section-header h2{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:500;line-height:1.2;color:var(--text);letter-spacing:-.3px}
+.section-header h2 strong{font-weight:700}
+.section-header p{margin-top:1rem;font-size:1rem;color:var(--text-mid);line-height:1.75;max-width:600px}
+
+/* ── SERVICE CARDS ── */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.service-card{background:var(--bg-panel);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;transition:.4s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--brand),var(--brand-light));transform:scaleX(0);transform-origin:left;transition:.4s}
+.service-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-icon{width:48px;height:48px;border-radius:10px;background:var(--brand-pale);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.25rem}
+.service-card h3{font-family:var(--font-display);font-size:1.25rem;font-weight:600;margin-bottom:.6rem}
+.service-card p{font-size:.9rem;color:var(--text-mid);line-height:1.65;margin-bottom:1rem}
+.service-link{font-size:.82rem;font-weight:600;color:var(--brand);text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;transition:.2s}
+.service-link:hover{color:var(--gold);gap:.7rem}
+
+/* ── WHY ── */
+.why-section{background:var(--bg-warm)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.why-visual-card{background:var(--bg-deep);border-radius:var(--radius-lg);padding:3rem;color:var(--text-inv);position:relative;overflow:hidden}
+.why-visual-card::after{content:'';position:absolute;bottom:-30px;right:-30px;width:200px;height:200px;border-radius:50%;background:var(--brand);opacity:.15}
+.why-visual-card .big-num{font-family:var(--font-display);font-size:5rem;font-weight:700;color:var(--gold);line-height:1;opacity:.2;position:absolute;top:1rem;right:1.5rem}
+.why-visual-card h3{font-family:var(--font-display);font-size:1.6rem;font-weight:500;margin-bottom:1rem;line-height:1.3}
+.why-visual-card p{font-size:.92rem;line-height:1.7;opacity:.75}
+.why-points{display:flex;flex-direction:column;gap:1.5rem}
+.why-point{display:flex;gap:1rem;align-items:flex-start}
+.why-point .wp-icon{width:40px;height:40px;border-radius:8px;background:var(--brand-pale);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;margin-top:2px}
+.why-point h4{font-family:var(--font-display);font-size:1.05rem;font-weight:600;margin-bottom:.25rem}
+.why-point p{font-size:.88rem;color:var(--text-mid);line-height:1.6}
+
+/* ── PROCESS ── */
+.process-section{background:var(--bg-deep);color:var(--text-inv)}
+.process-section .section-header .overline{color:var(--gold)}
+.process-section .section-header h2{color:var(--text-inv)}
+.process-section .section-header p{color:rgba(245,243,238,.6)}
+.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;counter-reset:step}
+.process-step{padding:2rem 1.5rem;border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-lg);background:rgba(255,255,255,.03);transition:.3s;counter-increment:step}
+.process-step:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15)}
+.process-step::before{content:counter(step,decimal-leading-zero);font-family:var(--font-display);font-size:2.5rem;font-weight:700;color:var(--gold);opacity:.25;line-height:1;display:block;margin-bottom:1rem}
+.process-step h4{font-family:var(--font-display);font-size:1.1rem;font-weight:600;margin-bottom:.5rem}
+.process-step p{font-size:.85rem;color:rgba(245,243,238,.55);line-height:1.6}
+
+/* ── TRAINING ── */
+.training-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.training-card{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-panel);transition:.3s}
+.training-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.training-card-head{padding:1.5rem 1.5rem 0}
+.tc-tag{display:inline-block;padding:.2rem .7rem;border-radius:20px;font-size:.68rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.tc-tag.core{background:var(--brand-pale);color:var(--brand-dark)}
+.tc-tag.adv{background:var(--gold-pale);color:#7A6330}
+.tc-tag.mgr{background:#E0E4F0;color:#3A4070}
+.training-card-body{padding:1rem 1.5rem 1.5rem}
+.training-card-body h3{font-family:var(--font-display);font-size:1.1rem;font-weight:600;margin-bottom:.4rem}
+.training-card-body p{font-size:.85rem;color:var(--text-mid);line-height:1.6;margin-bottom:1rem}
+.training-meta{display:flex;gap:1rem;font-size:.78rem;color:var(--text-light)}
+.training-meta span{display:flex;align-items:center;gap:.3rem}
+
+/* ── TESTIMONIALS ── */
+.testimonials-section{background:var(--bg-warm)}
+.testimonial-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+.testimonial-card{background:var(--bg-panel);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;position:relative}
+.testimonial-card::before{content:'\201C';font-family:var(--font-display);font-size:5rem;color:var(--brand-pale);line-height:1;position:absolute;top:.5rem;left:1.2rem}
+.testimonial-card blockquote{font-family:var(--font-display);font-size:1.08rem;font-weight:400;font-style:italic;color:var(--text);line-height:1.65;margin-bottom:1.25rem;position:relative;z-index:1}
+.testimonial-author{display:flex;align-items:center;gap:.75rem}
+.testimonial-avatar{width:42px;height:42px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-display);font-weight:700;font-size:.85rem}
+.testimonial-info .name{font-size:.88rem;font-weight:600}
+.testimonial-info .role{font-size:.78rem;color:var(--text-light)}
+
+/* ── CTA BAND ── */
+.cta-band{background:linear-gradient(135deg,var(--brand-dark) 0%,var(--brand) 50%,#3A7A64 100%);color:var(--text-inv);padding:clamp(3.5rem,6vw,5rem) clamp(1.5rem,4vw,2.5rem);text-align:center;position:relative;overflow:hidden}
+.cta-band::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")}
+.cta-band h2{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:500;margin-bottom:.8rem;position:relative}
+.cta-band h2 strong{font-weight:700;color:var(--gold-light)}
+.cta-band p{font-size:1.05rem;opacity:.7;max-width:560px;margin:0 auto 2rem;position:relative}
+.cta-band .btn-primary{position:relative}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;align-items:start}
+.contact-info p{font-size:.95rem;color:var(--text-mid);margin-bottom:2rem;line-height:1.7}
+.contact-details{display:flex;flex-direction:column;gap:1rem}
+.contact-detail{display:flex;align-items:center;gap:.8rem}
+.contact-detail .cd-icon{width:40px;height:40px;border-radius:8px;background:var(--brand-pale);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.contact-detail .cd-text{font-size:.9rem;color:var(--text-mid)}
+.contact-detail .cd-text strong{display:block;color:var(--text);font-size:.82rem;font-weight:600;letter-spacing:.3px;text-transform:uppercase;margin-bottom:.1rem}
+.contact-form{background:var(--bg-panel);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2.5rem;box-shadow:var(--shadow-sm)}
+.contact-form h3{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-bottom:.4rem}
+.contact-form .form-sub{font-size:.88rem;color:var(--text-light);margin-bottom:1.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-group{display:flex;flex-direction:column;gap:.35rem}
+.form-group.full{grid-column:1/-1}
+.form-label{font-size:.78rem;font-weight:600;letter-spacing:.3px;color:var(--text-mid)}
+.form-input,.form-textarea{width:100%;padding:.7rem 1rem;border:1px solid var(--border);border-radius:var(--radius);font-family:var(--font-body);font-size:.88rem;color:var(--text);background:var(--bg);transition:.2s;outline:none}
+.form-input:focus,.form-textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-pale)}
+.form-textarea{resize:vertical;min-height:120px}
+.form-select{appearance:none;background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7E7C' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 1rem center;padding-right:2.5rem}
+.form-submit{width:100%;padding:.85rem;border:none;border-radius:30px;background:var(--brand);color:#fff;font-family:var(--font-body);font-size:.88rem;font-weight:600;letter-spacing:.3px;cursor:pointer;transition:.3s;margin-top:.5rem}
+.form-submit:hover{background:var(--brand-dark);transform:translateY(-1px);box-shadow:0 6px 20px rgba(46,90,78,.25)}
+.form-success{display:none;text-align:center;padding:3rem 2rem}
+.form-success .check-circle{width:64px;height:64px;border-radius:50%;background:var(--brand-pale);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 1.25rem}
+.form-success h3{font-family:var(--font-display);font-size:1.4rem;font-weight:600;margin-bottom:.5rem;color:var(--brand-dark)}
+.form-success p{font-size:.92rem;color:var(--text-mid);line-height:1.6}
+
+/* ── FOOTER ── */
+.footer{background:var(--bg-deep);color:var(--text-inv);padding:4rem clamp(1.5rem,4vw,2.5rem) 2rem}
+.footer-inner{max-width:var(--max-w);margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand .wordmark{font-family:var(--font-display);font-size:1.4rem;font-weight:600;margin-bottom:.8rem}
+.footer-brand .wordmark span{color:var(--gold)}
+.footer-brand p{font-size:.85rem;color:rgba(245,243,238,.45);line-height:1.65;max-width:280px}
+.footer-col h4{font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.footer-col a{display:block;font-size:.85rem;color:rgba(245,243,238,.55);text-decoration:none;margin-bottom:.5rem;transition:.2s}
+.footer-col a:hover{color:var(--gold-light)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;font-size:.78rem;color:rgba(245,243,238,.3)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(30px);transition:.7s cubic-bezier(.25,.46,.45,.94)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}.reveal-delay-4{transition-delay:.4s}
+
+/* ══════════════════════════════════════════════════ */
+/* ══════ ADMIN DASHBOARD ══════                     */
+/* ══════════════════════════════════════════════════ */
+.admin{min-height:100vh;background:var(--bg-warm);padding-top:72px}
+.admin-bar{background:var(--bg-deep);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.admin-bar h2{font-family:var(--font-display);font-size:1.4rem;font-weight:600;color:var(--text-inv)}
+.admin-bar h2 span{color:var(--gold)}
+.admin-bar .ab-right{display:flex;align-items:center;gap:1rem}
+.back-btn{padding:.45rem 1.1rem;border-radius:20px;background:rgba(255,255,255,.1);color:var(--text-inv);font-size:.8rem;font-weight:500;border:none;cursor:pointer;font-family:var(--font-body);transition:.2s}
+.back-btn:hover{background:rgba(255,255,255,.18)}
+
+/* ── STATS ROW ── */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;padding:1.5rem 2rem}
+.stat-card{background:var(--bg-panel);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;text-align:center}
+.stat-card .sc-num{font-family:var(--font-display);font-size:2rem;font-weight:700;line-height:1;margin-bottom:.25rem}
+.stat-card .sc-label{font-size:.75rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-light)}
+.sc-new{color:var(--brand)}
+.sc-progress{color:var(--amber)}
+.sc-resolved{color:var(--green)}
+.sc-total{color:var(--text)}
+
+/* ── FILTERS ── */
+.filter-bar{display:flex;align-items:center;gap:.6rem;padding:.75rem 2rem;flex-wrap:wrap}
+.filter-btn{padding:.35rem .9rem;border-radius:18px;font-size:.78rem;font-weight:600;border:1.5px solid var(--border);background:var(--bg-panel);color:var(--text-mid);cursor:pointer;transition:.2s;font-family:var(--font-body)}
+.filter-btn:hover{border-color:var(--brand-light)}
+.filter-btn.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+
+/* ── TABLE ── */
+.enquiry-table-wrap{padding:0 2rem 2rem;overflow-x:auto}
+.enquiry-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--bg-panel);border:1px solid var(--border-light);border-radius:var(--radius-lg);overflow:hidden;font-size:.85rem}
+.enquiry-table thead{background:var(--bg-deep)}
+.enquiry-table th{padding:.75rem 1rem;text-align:left;font-weight:600;font-size:.72rem;letter-spacing:.5px;text-transform:uppercase;color:var(--text-inv);white-space:nowrap}
+.enquiry-table td{padding:.75rem 1rem;border-top:1px solid var(--border-light);vertical-align:top}
+.enquiry-table tbody tr{transition:.15s}
+.enquiry-table tbody tr:hover{background:var(--bg-warm)}
+.status-badge{display:inline-block;padding:.2rem .6rem;border-radius:12px;font-size:.7rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase}
+.status-new{background:var(--brand-pale);color:var(--brand-dark)}
+.status-in_progress{background:var(--amber-pale);color:#7A5520}
+.status-resolved{background:var(--green-pale);color:#2A5A32}
+.status-closed{background:#E8E6E2;color:var(--text-light)}
+.td-name{font-weight:600;color:var(--text)}
+.td-org{color:var(--text-mid);font-size:.82rem}
+.td-service{font-size:.82rem}
+.td-date{font-size:.8rem;color:var(--text-light);white-space:nowrap}
+.td-actions{display:flex;gap:.4rem;flex-wrap:wrap}
+.act-btn{padding:.25rem .6rem;border-radius:6px;font-size:.72rem;font-weight:600;border:1px solid var(--border);background:var(--bg);cursor:pointer;transition:.2s;font-family:var(--font-body);color:var(--text-mid)}
+.act-btn:hover{background:var(--brand-pale);border-color:var(--brand);color:var(--brand-dark)}
+.act-btn.danger{color:var(--red)}
+.act-btn.danger:hover{background:var(--red-pale);border-color:var(--red);color:#7A3530}
+
+/* ── DETAIL MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,29,28,.5);backdrop-filter:blur(4px);z-index:300;align-items:center;justify-content:center;padding:2rem}
+.modal-overlay.open{display:flex}
+.modal{background:var(--bg-panel);border-radius:var(--radius-lg);max-width:640px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:var(--shadow-lg);position:relative}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem;border-bottom:1px solid var(--border-light)}
+.modal-header h3{font-family:var(--font-display);font-size:1.25rem;font-weight:600}
+.modal-close{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;color:var(--text-mid);transition:.2s}
+.modal-close:hover{background:var(--red-pale);border-color:var(--red);color:var(--red)}
+.modal-body{padding:1.5rem 2rem}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem}
+.detail-item label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:.2rem}
+.detail-item .val{font-size:.92rem;color:var(--text)}
+.detail-item.full{grid-column:1/-1}
+.detail-item .val.message-text{background:var(--bg-warm);padding:.8rem 1rem;border-radius:var(--radius);line-height:1.6;font-size:.88rem;color:var(--text-mid);white-space:pre-wrap}
+.modal-footer{padding:1rem 2rem 1.5rem;display:flex;gap:.6rem;flex-wrap:wrap;border-top:1px solid var(--border-light)}
+.modal-footer .act-btn{padding:.45rem 1rem;font-size:.8rem}
+
+/* ── EMPTY ── */
+.empty-state{text-align:center;padding:4rem 2rem}
+.empty-state .em-icon{font-size:3rem;margin-bottom:1rem;opacity:.3}
+.empty-state h3{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--text-mid);margin-bottom:.4rem}
+.empty-state p{font-size:.9rem;color:var(--text-light)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .why-grid,.contact-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .hero-stats{flex-wrap:wrap;gap:1.5rem}
+  .form-row{grid-template-columns:1fr}
+  .detail-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .services-grid,.process-steps,.testimonial-grid,.training-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .filter-bar,.enquiry-table-wrap,.stats-row,.admin-bar{padding-left:1rem;padding-right:1rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ NAV ════════════ -->
+<nav class="nav scrolled" id="mainNav">
+  <div class="nav-inner">
+    <a class="nav-logo" onclick="showPublic()">
+      <div class="mark"><span>B</span></div>
+      <span class="wordmark" style="color:var(--text)">Brider</span>
+    </a>
+    <div class="nav-links" style="display:flex">
+      <a href="#services" class="nav-link" style="color:var(--text-mid)" onclick="showPublic()">Services</a>
+      <a href="#why" class="nav-link" style="color:var(--text-mid)" onclick="showPublic()">Why Brider</a>
+      <a href="#process" class="nav-link" style="color:var(--text-mid)" onclick="showPublic()">Process</a>
+      <a href="#training" class="nav-link" style="color:var(--text-mid)" onclick="showPublic()">Training</a>
+      <a href="#testimonials" class="nav-link" style="color:var(--text-mid)" onclick="showPublic()">Testimonials</a>
+      <a href="#contact" class="nav-cta" onclick="showPublic()">Get in Touch</a>
+      <a class="admin-link" style="color:var(--text-light)" onclick="showAdmin()" title="Admin Dashboard">⚙ Admin</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ╔══════════════════════════════════════════════════════════════╗ -->
+<!-- ║  PUBLIC WEBSITE                                              ║ -->
+<!-- ╚══════════════════════════════════════════════════════════════╝ -->
+<div id="publicSite">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> External Workplace Mediation</div>
+    <h1>Resolve conflict.<br><strong>Rebuild trust.</strong><br>Protect your <em>people.</em></h1>
+    <p class="hero-sub">Brider Mediation Agency provides independent, professional mediation services that help organisations resolve workplace disputes quickly, confidentially, and with lasting results.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Request a Mediator →</a>
+      <a href="#process" class="btn-secondary">How It Works</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">93%</div><div class="label">Resolution Rate</div></div>
+      <div class="hero-stat"><div class="num">1 Day</div><div class="label">Typical Duration</div></div>
+      <div class="hero-stat"><div class="num">500+</div><div class="label">Cases Resolved</div></div>
+      <div class="hero-stat"><div class="num">48hr</div><div class="label">Mediator Assigned</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-header reveal"><div class="overline">Our Services</div><h2>Expert mediation for <strong>every workplace dispute</strong></h2><p>From interpersonal conflict to team breakdowns, our accredited mediators bring clarity, structure, and resolution — usually within a single day.</p></div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1"><div class="service-icon">⚖️</div><h3>Workplace Mediation</h3><p>An independent mediator facilitates a structured conversation between colleagues in conflict — helping them find their own resolution without formal proceedings.</p><a href="#contact" class="service-link">Learn more →</a></div>
+      <div class="service-card reveal reveal-delay-2"><div class="service-icon">👥</div><h3>Team Mediation &amp; Facilitation</h3><p>When conflict affects a whole team, group mediation restores communication and trust. We work with teams of any size to rebuild working relationships.</p><a href="#contact" class="service-link">Learn more →</a></div>
+      <div class="service-card reveal reveal-delay-3"><div class="service-icon">🛡️</div><h3>Grievance &amp; Disciplinary Mediation</h3><p>Many formal processes can be resolved through mediation. We work alongside HR to offer mediation at any stage, with full confidentiality.</p><a href="#contact" class="service-link">Learn more →</a></div>
+      <div class="service-card reveal reveal-delay-1"><div class="service-icon">💼</div><h3>Senior Leadership Disputes</h3><p>Conflicts at the top carry unique risks. Our senior mediators specialise in high-stakes disputes involving directors, executives, and partnerships.</p><a href="#contact" class="service-link">Learn more →</a></div>
+      <div class="service-card reveal reveal-delay-2"><div class="service-icon">🌐</div><h3>Online &amp; Remote Mediation</h3><p>For distributed teams, we deliver the full mediation process via secure video conferencing — with the same rigour and effectiveness as in-person.</p><a href="#contact" class="service-link">Learn more →</a></div>
+      <div class="service-card reveal reveal-delay-3"><div class="service-icon">📊</div><h3>Conflict Audits &amp; Consultancy</h3><p>We help organisations understand conflict patterns, design resolution frameworks, and build culture where disputes are addressed early.</p><a href="#contact" class="service-link">Learn more →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section why-section" id="why">
+  <div class="container">
+    <div class="section-header reveal"><div class="overline">Why Brider</div><h2>The external partner <strong>your people trust</strong></h2></div>
+    <div class="why-grid">
+      <div class="why-visual reveal">
+        <div class="why-visual-card"><div class="big-num">93%</div><h3>Unresolved workplace conflict costs employers billions every year.</h3><p>Early mediation is the single most effective intervention — faster than formal processes, cheaper than tribunals, and far better for your people and culture.</p></div>
+      </div>
+      <div class="why-points reveal reveal-delay-1">
+        <div class="why-point"><div class="wp-icon">🎯</div><div><h4>Truly Independent</h4><p>Complete impartiality. No internal politics, no prior relationships, no hidden agenda.</p></div></div>
+        <div class="why-point"><div class="wp-icon">🏆</div><div><h4>Accredited &amp; Experienced</h4><p>Every Brider mediator is professionally accredited with ongoing supervision and CPD.</p></div></div>
+        <div class="why-point"><div class="wp-icon">⏱️</div><div><h4>Fast &amp; Responsive</h4><p>Mediator assigned within 48 hours. Full mediation completed in a single day.</p></div></div>
+        <div class="why-point"><div class="wp-icon">🔒</div><div><h4>Completely Confidential</h4><p>Nothing is shared without explicit consent. We provide only: resolved or not resolved.</p></div></div>
+        <div class="why-point"><div class="wp-icon">📋</div><div><h4>Measurable Outcomes</h4><p>We track resolution rates, satisfaction, and agreement durability for continuous improvement.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section process-section" id="process">
+  <div class="container">
+    <div class="section-header reveal"><div class="overline">Our Process</div><h2>From referral to resolution — <strong>typically in one week</strong></h2><p>Our proven process is designed to be swift, structured, and sensitive.</p></div>
+    <div class="process-steps">
+      <div class="process-step reveal reveal-delay-1"><h4>Referral &amp; Triage</h4><p>You contact Brider. We assess suitability and assign a mediator within 48 hours.</p></div>
+      <div class="process-step reveal reveal-delay-2"><h4>Pre-Mediation Meetings</h4><p>Our mediator meets each party individually and confidentially to listen and prepare.</p></div>
+      <div class="process-step reveal reveal-delay-3"><h4>Joint Mediation Session</h4><p>Both parties come together. The mediator facilitates honest dialogue toward resolution.</p></div>
+      <div class="process-step reveal reveal-delay-4"><h4>Agreement &amp; Follow-Up</h4><p>Agreement is captured in writing. We offer a follow-up check-in to ensure it holds.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINING -->
+<section class="section" id="training">
+  <div class="container">
+    <div class="section-header reveal"><div class="overline">Training</div><h2>Build your organisation's <strong>conflict capability</strong></h2><p>We equip your people to prevent disputes, not just resolve them.</p></div>
+    <div class="training-grid">
+      <div class="training-card reveal reveal-delay-1"><div class="training-card-head"><span class="tc-tag core">Core</span></div><div class="training-card-body"><h3>Internal Workplace Mediator</h3><p>Flagship accredited course for HR professionals and employee volunteers.</p><div class="training-meta"><span>📅 5 Days</span><span>👥 Max 12</span><span>📜 Accredited</span></div></div></div>
+      <div class="training-card reveal reveal-delay-2"><div class="training-card-head"><span class="tc-tag mgr">Managers</span></div><div class="training-card-body"><h3>Managing 'Difficult' Conversations</h3><p>Practical, scenario-based training using the CLEAR framework.</p><div class="training-meta"><span>📅 1 Day</span><span>👥 Max 16</span><span>📜 Certificate</span></div></div></div>
+      <div class="training-card reveal reveal-delay-3"><div class="training-card-head"><span class="tc-tag adv">Strategic</span></div><div class="training-card-body"><h3>Preventing Conflict at Work</h3><p>For HR leaders. Root causes, early warning systems, and culture design.</p><div class="training-meta"><span>📅 2 Days</span><span>👥 Max 12</span><span>📜 Certificate</span></div></div></div>
+      <div class="training-card reveal reveal-delay-4"><div class="training-card-head"><span class="tc-tag core">CPD</span></div><div class="training-card-body"><h3>Hints &amp; Tips from a Mediator</h3><p>Half-day masterclass of practitioner wisdom and craft.</p><div class="training-meta"><span>📅 Half Day</span><span>👥 Max 20</span><span>📜 CPD</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials-section" id="testimonials">
+  <div class="container">
+    <div class="section-header reveal"><div class="overline">Testimonials</div><h2>Trusted by organisations <strong>across every sector</strong></h2></div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal reveal-delay-1"><blockquote>Brider transformed what we feared would become a tribunal into a genuine resolution in one day. The mediator's skill was remarkable.</blockquote><div class="testimonial-author"><div class="testimonial-avatar">SH</div><div class="testimonial-info"><div class="name">Sarah Henderson</div><div class="role">HR Director, Ashford Healthcare Group</div></div></div></div>
+      <div class="testimonial-card reveal reveal-delay-2"><blockquote>We'd been struggling with a team conflict for months. Brider's facilitation brought things into the open safely. Six months on, the team is performing better than ever.</blockquote><div class="testimonial-author"><div class="testimonial-avatar">MR</div><div class="testimonial-info"><div class="name">Michael Rodriguez</div><div class="role">Operations Manager, Fenwick &amp; Partners</div></div></div></div>
+      <div class="testimonial-card reveal reveal-delay-3"><blockquote>The internal mediator training was outstanding. We've since resolved twelve cases internally — a huge cost saving and culture shift.</blockquote><div class="testimonial-author"><div class="testimonial-avatar">JL</div><div class="testimonial-info"><div class="name">Jennifer Liu</div><div class="role">People &amp; Culture Lead, Greenfield Education Trust</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band"><h2>Ready to resolve conflict <strong>before it escalates?</strong></h2><p>Get in touch for a confidential, no-obligation conversation.</p><a href="#contact" class="btn-primary">Speak with Us Today →</a></section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="section-header" style="margin-bottom:1.5rem"><div class="overline">Contact Us</div><h2>Let's have a <strong>conversation</strong></h2></div>
+        <p>Whether you're dealing with an active dispute or want to build a proactive resolution framework, we're here. All enquiries are treated confidentially.</p>
+        <div class="contact-details">
+          <div class="contact-detail"><div class="cd-icon">📞</div><div class="cd-text"><strong>Phone</strong>+44 (0) 20 7946 0321</div></div>
+          <div class="contact-detail"><div class="cd-icon">✉️</div><div class="cd-text"><strong>Email</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cea6aba2a2a18eacbca7aaabbca3abaaa7afbaa7a1a0e0ada1e0bba5">[email&#160;protected]</a></div></div>
+          <div class="contact-detail"><div class="cd-icon">📍</div><div class="cd-text"><strong>Office</strong>14 Clerkenwell Close, London EC1R 0PQ</div></div>
+          <div class="contact-detail"><div class="cd-icon">🕐</div><div class="cd-text"><strong>Hours</strong>Mon–Fri, 8:30am – 6:00pm</div></div>
+        </div>
+      </div>
+      <div class="contact-form reveal reveal-delay-2" id="contactFormCard">
+        <div id="formFields">
+          <h3>Request a Mediator</h3>
+          <p class="form-sub">Complete the form below and we'll respond within one working day.</p>
+          <div class="form-row"><div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-input" id="fFirst" placeholder="Jane"></div><div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-input" id="fLast" placeholder="Smith"></div></div>
+          <div class="form-row"><div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="fEmail" placeholder="jane@company.com"></div><div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-input" id="fPhone" placeholder="+44 7700 900000"></div></div>
+          <div class="form-row"><div class="form-group"><label class="form-label">Organisation</label><input type="text" class="form-input" id="fOrg" placeholder="Company name"></div><div class="form-group"><label class="form-label">Service Required</label><select class="form-input form-select" id="fService"><option value="">Select a service</option><option>Workplace Mediation</option><option>Team Mediation</option><option>Grievance / Disciplinary Mediation</option><option>Senior Leadership Dispute</option><option>Online / Remote Mediation</option><option>Conflict Audit & Consultancy</option><option>Internal Mediator Training</option><option>Difficult Conversations Training</option><option>Preventing Conflict Training</option><option>Other / Not Sure</option></select></div></div>
+          <div class="form-row"><div class="form-group full"><label class="form-label">Tell Us About Your Situation</label><textarea class="form-textarea form-input" id="fMessage" placeholder="Brief overview of the dispute or enquiry. All information is treated confidentially."></textarea></div></div>
+          <button class="form-submit" id="submitBtn" onclick="submitEnquiry()">Send Enquiry</button>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <div class="check-circle">✓</div>
+          <h3>Enquiry Received</h3>
+          <p>Thank you for contacting Brider Mediation. We'll review your enquiry and respond within one working day.</p>
+          <p style="margin-top:1rem;font-size:.85rem;color:var(--text-light)">Your reference: <strong id="refCode"></strong></p>
+          <button class="btn-primary" style="margin-top:1.5rem" onclick="resetForm()">Submit Another Enquiry</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="wordmark">Brider <span>Mediation</span></div><p>Independent, accredited workplace mediation services. Resolving conflict, rebuilding trust, protecting people.</p></div>
+      <div class="footer-col"><h4>Services</h4><a href="#services">Workplace Mediation</a><a href="#services">Team Facilitation</a><a href="#services">Grievance Mediation</a><a href="#services">Leadership Disputes</a><a href="#services">Remote Mediation</a><a href="#services">Conflict Audits</a></div>
+      <div class="footer-col"><h4>Training</h4><a href="#training">Internal Mediator</a><a href="#training">Difficult Conversations</a><a href="#training">Preventing Conflict</a><a href="#training">Hints &amp; Tips CPD</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="#why">About Brider</a><a href="#process">Our Process</a><a href="#testimonials">Testimonials</a><a href="#contact">Contact</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Brider Mediation Agency. All rights reserved.</span><span></span></div>
+  </div>
+</footer>
+</div><!-- /publicSite -->
+
+
+<!-- ╔══════════════════════════════════════════════════════════════╗ -->
+<!-- ║  ADMIN DASHBOARD                                            ║ -->
+<!-- ╚══════════════════════════════════════════════════════════════╝ -->
+<div id="adminDashboard" class="admin">
+  <div class="admin-bar">
+    <h2>📋 Enquiry <span>Dashboard</span></h2>
+    <div class="ab-right">
+      <span style="font-size:.78rem;color:rgba(255,255,255,.5)" id="lastUpdated"></span>
+      <button class="back-btn" onclick="openSetupGuide()" style="background:rgba(184,150,90,.25);color:var(--gold-light)">📋 Setup Guide</button>
+      <button class="back-btn" onclick="showPublic()">← Back to Website</button>
+    </div>
+  </div>
+
+  <!-- CONNECTION STATUS -->
+  <div style="padding:.6rem 2rem;font-size:.78rem;display:flex;align-items:center;gap:.5rem" id="connectionStatus"></div>
+
+  <div class="stats-row" id="statsRow"></div>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">All</button>
+    <button class="filter-btn" data-filter="new" onclick="setFilter('new',this)">New</button>
+    <button class="filter-btn" data-filter="in_progress" onclick="setFilter('in_progress',this)">In Progress</button>
+    <button class="filter-btn" data-filter="resolved" onclick="setFilter('resolved',this)">Resolved</button>
+    <button class="filter-btn" data-filter="closed" onclick="setFilter('closed',this)">Closed</button>
+  </div>
+
+  <div class="enquiry-table-wrap">
+    <table class="enquiry-table">
+      <thead><tr><th>Ref</th><th>Date</th><th>Name</th><th>Organisation</th><th>Service</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <div class="empty-state" id="emptyState" style="display:none">
+      <div class="em-icon">📭</div>
+      <h3>No enquiries yet</h3>
+      <p>When someone submits the Request a Mediator form, their enquiry will appear here.</p>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal">
+    <div class="modal-header"><h3 id="modalTitle">Enquiry Details</h3><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer" id="modalFooter"></div>
+  </div>
+</div>
+
+<!-- SETUP GUIDE MODAL -->
+<div class="modal-overlay" id="setupModal">
+  <div class="modal" style="max-width:720px">
+    <div class="modal-header"><h3>Google Sheets Setup Guide</h3><button class="modal-close" onclick="document.getElementById('setupModal').classList.remove('open')">✕</button></div>
+    <div class="modal-body" style="font-size:.88rem;line-height:1.7">
+      <p style="color:var(--text-mid);margin-bottom:1.25rem">Follow these steps to connect the Brider enquiry form to your Google Sheet. Submissions will be saved to both the admin dashboard <strong>and</strong> your spreadsheet.</p>
+
+      <div style="background:var(--brand-pale);padding:1rem 1.25rem;border-radius:var(--radius);margin-bottom:1.5rem">
+        <strong style="color:var(--brand-dark)">Current status:</strong>
+        <span id="setupStatus" style="color:var(--brand-dark)"></span>
+      </div>
+
+      <h4 style="font-family:var(--font-display);font-size:1.05rem;margin-bottom:.5rem">Step 1 — Create Your Google Sheet</h4>
+      <p style="color:var(--text-mid)">Create a new Google Sheet and add these headers in Row 1:</p>
+      <div style="background:var(--bg-warm);padding:.6rem 1rem;border-radius:var(--radius);font-family:monospace;font-size:.8rem;overflow-x:auto;margin:.5rem 0 1.25rem;white-space:nowrap">Reference | Date | First Name | Last Name | Email | Phone | Organisation | Service | Message | Status</div>
+
+      <h4 style="font-family:var(--font-display);font-size:1.05rem;margin-bottom:.5rem">Step 2 — Add the Apps Script</h4>
+      <p style="color:var(--text-mid)">In your Google Sheet, go to <strong>Extensions → Apps Script</strong>. Delete any existing code and paste the following:</p>
+      <div style="position:relative">
+        <button onclick="copyScript()" style="position:absolute;top:.5rem;right:.5rem;padding:.3rem .7rem;border-radius:4px;background:var(--brand);color:#fff;border:none;font-size:.72rem;font-weight:600;cursor:pointer;font-family:var(--font-body)">Copy Script</button>
+        <pre style="background:var(--bg-deep);color:var(--text-inv);padding:1.25rem;border-radius:var(--radius);font-size:.78rem;overflow-x:auto;line-height:1.6;margin:.5rem 0 1.25rem" id="appsScript">var sheetName = 'Sheet1';
+var scriptProp = PropertiesService.getScriptProperties();
+
+function initialSetup() {
+  var activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  scriptProp.setProperty('key', activeSpreadsheet.getId());
+}
+
+function doPost(e) {
+  var lock = LockService.getScriptLock();
+  lock.tryLock(10000);
+  try {
+    var doc = SpreadsheetApp.openById(scriptProp.getProperty('key'));
+    var sheet = doc.getSheetByName(sheetName);
+    var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    var nextRow = sheet.getLastRow() + 1;
+    var newRow = headers.map(function(header) {
+      return header === 'Date' ? new Date() : e.parameter[header] || '';
+    });
+    sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow]);
+    return ContentService
+      .createTextOutput(JSON.stringify({ result: 'success', row: nextRow }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ result: 'error', error: err }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    lock.releaseLock();
+  }
+}</pre>
+      </div>
+
+      <h4 style="font-family:var(--font-display);font-size:1.05rem;margin-bottom:.5rem">Step 3 — Run Initial Setup</h4>
+      <p style="color:var(--text-mid)">In the Apps Script editor, select the <strong>initialSetup</strong> function from the dropdown and click <strong>Run</strong>. Authorise the permissions when prompted.</p>
+
+      <h4 style="font-family:var(--font-display);font-size:1.05rem;margin:.75rem 0 .5rem">Step 4 — Deploy as Web App</h4>
+      <p style="color:var(--text-mid)">Click <strong>Deploy → New deployment → Web app</strong>. Set:</p>
+      <div style="background:var(--bg-warm);padding:.6rem 1rem;border-radius:var(--radius);font-size:.84rem;margin:.5rem 0 1.25rem">
+        <strong>Execute as:</strong> Me<br>
+        <strong>Who has access:</strong> Anyone
+      </div>
+      <p style="color:var(--text-mid)">Click <strong>Deploy</strong> and copy the Web App URL.</p>
+
+      <h4 style="font-family:var(--font-display);font-size:1.05rem;margin:.75rem 0 .5rem">Step 5 — Add Your URL to the Website</h4>
+      <p style="color:var(--text-mid)">Open <code>brider-mediation-website.html</code> in a text editor. Find this line near the top of the script section:</p>
+      <div style="background:var(--bg-warm);padding:.6rem 1rem;border-radius:var(--radius);font-family:monospace;font-size:.8rem;margin:.5rem 0 .5rem">const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwTIuXNNUqbF2hsiCqHhfjToD5_AqfXoojfo3J2pLx1q0sJc2BwpmRmVLTfKaB5B5p8Xw/exec';</div>
+      <p style="color:var(--text-mid)">Replace <code>YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL</code> with your actual Web App URL. Save and re-upload.</p>
+
+      <div style="background:var(--green-pale);padding:1rem 1.25rem;border-radius:var(--radius);margin-top:1.5rem">
+        <strong style="color:var(--green)">✓ That's it!</strong>
+        <span style="color:#2A5A32"> Every form submission will now be saved to both your Google Sheet and the admin dashboard simultaneously.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ══════════════════════════════════════════════
+   STORAGE & STATE
+   ══════════════════════════════════════════════ */
+let allEnquiries = [];
+let currentFilter = 'all';
+const STORAGE_KEY = 'brider-enquiries';
+
+async function loadEnquiries() {
+  try {
+    const result = await window.storage.get(STORAGE_KEY);
+    allEnquiries = result ? JSON.parse(result.value) : [];
+  } catch (e) {
+    allEnquiries = [];
+  }
+}
+
+async function saveEnquiries() {
+  try {
+    await window.storage.set(STORAGE_KEY, JSON.stringify(allEnquiries));
+  } catch (e) {
+    console.error('Storage save failed:', e);
+  }
+}
+
+/* ══════════════════════════════════════════════
+   GOOGLE SHEETS INTEGRATION
+   ══════════════════════════════════════════════
+   SETUP INSTRUCTIONS:
+   1. Create a new Google Sheet with these column headers in Row 1:
+      Reference | Date | First Name | Last Name | Email | Phone | Organisation | Service | Message | Status
+   2. Go to Extensions → Apps Script
+   3. Delete any existing code, paste the script from the Setup Guide (click ⚙ Admin → Setup Guide)
+   4. Click Deploy → New deployment → Web app
+      - Execute as: Me
+      - Who has access: Anyone
+   5. Copy the Web App URL and paste it below (replace the placeholder)
+   6. Done! Form submissions will now appear in your Google Sheet AND the admin dashboard.
+   ══════════════════════════════════════════════ */
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxe7HQySruxBziR9UNdkIxyLNwwZdLAllo0jN21O4DlaXQJuks5feWDBfRo1Z7MmZG8Jw/exec';
+
+/* ══════════════════════════════════════════════
+   FORM SUBMISSION
+   ══════════════════════════════════════════════ */
+async function submitEnquiry() {
+  const f = id => document.getElementById(id).value.trim();
+  const firstName = f('fFirst'), lastName = f('fLast'), email = f('fEmail'),
+        phone = f('fPhone'), org = f('fOrg'), service = f('fService'), message = f('fMessage');
+
+  if (!firstName || !lastName || !email) {
+    alert('Please fill in at least your first name, last name, and email.');
+    return;
+  }
+
+  // Disable button immediately
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  const ref = 'BM-' + Date.now().toString(36).toUpperCase().slice(-6);
+  const enquiry = {
+    id: ref,
+    firstName, lastName, email, phone, org, service, message,
+    status: 'new',
+    createdAt: new Date().toISOString(),
+    notes: ''
+  };
+
+  // Save to local persistent storage (admin dashboard)
+  await loadEnquiries();
+  allEnquiries.unshift(enquiry);
+  await saveEnquiries();
+
+  // Send to Google Sheets
+  if (GOOGLE_SHEETS_URL && GOOGLE_SHEETS_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL') {
+    try {
+      const formData = new FormData();
+      formData.append('Reference', ref);
+      formData.append('Date', new Date().toLocaleString('en-GB'));
+      formData.append('FirstName', firstName);
+      formData.append('LastName', lastName);
+      formData.append('Email', email);
+      formData.append('Phone', phone);
+      formData.append('Organisation', org);
+      formData.append('Service', service);
+      formData.append('Message', message);
+      formData.append('Status', 'New');
+
+      fetch(GOOGLE_SHEETS_URL, { method: 'POST', body: formData })
+        .then(res => console.log('Google Sheets: submitted'))
+        .catch(err => console.warn('Google Sheets: offline, saved locally', err));
+    } catch (err) {
+      console.warn('Google Sheets submission failed, saved locally:', err);
+    }
+  }
+
+  document.getElementById('formFields').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+  document.getElementById('refCode').textContent = ref;
+}
+
+function resetForm() {
+  ['fFirst','fLast','fEmail','fPhone','fOrg','fService','fMessage'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el.tagName === 'SELECT') el.selectedIndex = 0;
+    else el.value = '';
+  });
+  document.getElementById('formFields').style.display = 'block';
+  document.getElementById('formSuccess').style.display = 'none';
+  document.getElementById('submitBtn').disabled = false;
+  document.getElementById('submitBtn').textContent = 'Send Enquiry';
+}
+
+/* ══════════════════════════════════════════════
+   VIEW SWITCHING
+   ══════════════════════════════════════════════ */
+function showPublic() {
+  document.getElementById('publicSite').style.display = 'block';
+  document.getElementById('adminDashboard').style.display = 'none';
+  window.scrollTo({top: 0});
+  initNav();
+}
+
+async function showAdmin() {
+  document.getElementById('publicSite').style.display = 'none';
+  document.getElementById('adminDashboard').style.display = 'block';
+  window.scrollTo({top: 0});
+  await loadEnquiries();
+  renderDashboard();
+  updateConnectionStatus();
+}
+
+/* ══════════════════════════════════════════════
+   DASHBOARD RENDERING
+   ══════════════════════════════════════════════ */
+function renderDashboard() {
+  renderStats();
+  renderTable();
+  document.getElementById('lastUpdated').textContent = 'Updated: ' + new Date().toLocaleTimeString();
+}
+
+function renderStats() {
+  const counts = {new:0, in_progress:0, resolved:0, closed:0};
+  allEnquiries.forEach(e => { if (counts[e.status] !== undefined) counts[e.status]++; });
+  const total = allEnquiries.length;
+  document.getElementById('statsRow').innerHTML = `
+    <div class="stat-card"><div class="sc-num sc-total">${total}</div><div class="sc-label">Total Enquiries</div></div>
+    <div class="stat-card"><div class="sc-num sc-new">${counts.new}</div><div class="sc-label">New</div></div>
+    <div class="stat-card"><div class="sc-num sc-progress">${counts.in_progress}</div><div class="sc-label">In Progress</div></div>
+    <div class="stat-card"><div class="sc-num sc-resolved">${counts.resolved}</div><div class="sc-label">Resolved</div></div>
+  `;
+}
+
+function renderTable() {
+  const filtered = currentFilter === 'all' ? allEnquiries : allEnquiries.filter(e => e.status === currentFilter);
+  const tbody = document.getElementById('tableBody');
+  const empty = document.getElementById('emptyState');
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  tbody.innerHTML = filtered.map(e => {
+    const d = new Date(e.createdAt);
+    const date = d.toLocaleDateString('en-GB', {day:'2-digit',month:'short',year:'numeric'});
+    const statusLabel = {new:'New',in_progress:'In Progress',resolved:'Resolved',closed:'Closed'}[e.status]||e.status;
+    return `<tr>
+      <td><strong style="font-size:.82rem;color:var(--brand)">${e.id}</strong></td>
+      <td class="td-date">${date}</td>
+      <td class="td-name">${e.firstName} ${e.lastName}<br><span style="font-size:.78rem;color:var(--text-light)">${e.email}</span></td>
+      <td class="td-org">${e.org||'—'}</td>
+      <td class="td-service">${e.service||'—'}</td>
+      <td><span class="status-badge status-${e.status}">${statusLabel}</span></td>
+      <td class="td-actions">
+        <button class="act-btn" onclick="openDetail('${e.id}')">View</button>
+        <button class="act-btn danger" onclick="deleteEnquiry('${e.id}')">Delete</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function setFilter(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTable();
+}
+
+/* ══════════════════════════════════════════════
+   DETAIL MODAL
+   ══════════════════════════════════════════════ */
+function openDetail(id) {
+  const e = allEnquiries.find(x => x.id === id);
+  if (!e) return;
+  const d = new Date(e.createdAt);
+  const datetime = d.toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'}) + ' at ' + d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  const statusLabel = {new:'New',in_progress:'In Progress',resolved:'Resolved',closed:'Closed'}[e.status]||e.status;
+
+  document.getElementById('modalTitle').textContent = 'Enquiry ' + e.id;
+  document.getElementById('modalBody').innerHTML = `
+    <div class="detail-grid">
+      <div class="detail-item"><label>Reference</label><div class="val">${e.id}</div></div>
+      <div class="detail-item"><label>Submitted</label><div class="val">${datetime}</div></div>
+      <div class="detail-item"><label>Name</label><div class="val">${e.firstName} ${e.lastName}</div></div>
+      <div class="detail-item"><label>Email</label><div class="val"><a href="mailto:${e.email}" style="color:var(--brand)">${e.email}</a></div></div>
+      <div class="detail-item"><label>Phone</label><div class="val">${e.phone||'—'}</div></div>
+      <div class="detail-item"><label>Organisation</label><div class="val">${e.org||'—'}</div></div>
+      <div class="detail-item"><label>Service Requested</label><div class="val">${e.service||'—'}</div></div>
+      <div class="detail-item"><label>Status</label><div class="val"><span class="status-badge status-${e.status}">${statusLabel}</span></div></div>
+      <div class="detail-item full"><label>Message</label><div class="val message-text">${e.message||'No message provided.'}</div></div>
+      <div class="detail-item full"><label>Internal Notes</label><textarea id="noteField" class="form-input form-textarea" style="min-height:80px;font-size:.85rem" placeholder="Add internal notes about this enquiry...">${e.notes||''}</textarea></div>
+    </div>
+  `;
+
+  const statusButtons = [
+    {status:'new',label:'Mark New',show:e.status!=='new'},
+    {status:'in_progress',label:'Mark In Progress',show:e.status!=='in_progress'},
+    {status:'resolved',label:'Mark Resolved',show:e.status!=='resolved'},
+    {status:'closed',label:'Mark Closed',show:e.status!=='closed'}
+  ].filter(s=>s.show);
+
+  document.getElementById('modalFooter').innerHTML = `
+    <button class="act-btn" onclick="saveNotes('${e.id}')" style="background:var(--brand);color:#fff;border-color:var(--brand)">Save Notes</button>
+    ${statusButtons.map(s=>`<button class="act-btn" onclick="changeStatus('${e.id}','${s.status}')">${s.label}</button>`).join('')}
+  `;
+
+  document.getElementById('detailModal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('detailModal').classList.remove('open');
+}
+
+async function saveNotes(id) {
+  const e = allEnquiries.find(x => x.id === id);
+  if (!e) return;
+  e.notes = document.getElementById('noteField').value;
+  await saveEnquiries();
+  closeModal();
+  renderDashboard();
+}
+
+async function changeStatus(id, newStatus) {
+  const e = allEnquiries.find(x => x.id === id);
+  if (!e) return;
+  e.notes = document.getElementById('noteField').value;
+  e.status = newStatus;
+  await saveEnquiries();
+  closeModal();
+  renderDashboard();
+}
+
+async function deleteEnquiry(id) {
+  if (!confirm('Delete enquiry ' + id + '? This cannot be undone.')) return;
+  allEnquiries = allEnquiries.filter(x => x.id !== id);
+  await saveEnquiries();
+  renderDashboard();
+}
+
+/* ══════════════════════════════════════════════
+   NAV & SCROLL
+   ══════════════════════════════════════════════ */
+function initNav() {
+  const nav = document.getElementById('mainNav');
+  const updateNav = () => {
+    const scrolled = window.scrollY > 60;
+    nav.classList.toggle('scrolled', scrolled);
+    const links = nav.querySelectorAll('.nav-link');
+    const wordmark = nav.querySelector('.wordmark');
+    const adminLink = nav.querySelector('.admin-link');
+    if (document.getElementById('publicSite').style.display !== 'none') {
+      links.forEach(l => l.style.color = scrolled ? '' : '');
+      if (wordmark) wordmark.style.color = scrolled ? '' : '';
+      if (adminLink) adminLink.style.color = scrolled ? '' : '';
+    }
+  };
+  window.addEventListener('scroll', updateNav);
+  updateNav();
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, {threshold:.15, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+// Close modals on overlay click
+document.getElementById('detailModal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+document.getElementById('setupModal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) e.target.classList.remove('open');
+});
+
+function openSetupGuide() {
+  const connected = GOOGLE_SHEETS_URL && GOOGLE_SHEETS_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+  document.getElementById('setupStatus').textContent = connected
+    ? '✓ Connected — Google Sheets URL is configured'
+    : '⚠ Not connected — follow the steps below to set up';
+  document.getElementById('setupModal').classList.add('open');
+}
+
+function copyScript() {
+  const code = document.getElementById('appsScript').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    event.target.textContent = '✓ Copied!';
+    setTimeout(() => event.target.textContent = 'Copy Script', 2000);
+  }).catch(() => {});
+}
+
+function updateConnectionStatus() {
+  const el = document.getElementById('connectionStatus');
+  const connected = GOOGLE_SHEETS_URL && GOOGLE_SHEETS_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+  el.innerHTML = connected
+    ? '<span style="width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block"></span><span style="color:var(--green)">Google Sheets connected</span>'
+    : '<span style="width:8px;height:8px;border-radius:50%;background:var(--amber);display:inline-block"></span><span style="color:var(--amber)">Google Sheets not connected — click Setup Guide</span>';
+}
+
+// Init
+initNav();
+</script>
+</body>
+</html>
